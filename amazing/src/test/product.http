@@ -1,0 +1,61 @@
+### Read all products
+GET {{baseUrl}}/products
+
+### Read one product
+GET {{baseUrl}}/products/1
+
+### Read a non-existing product
+GET {{baseUrl}}/products/-1
+
+### Create one product
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "id": 5,
+  "name": "Test",
+  "category": "TestCat",
+  "price": 10
+}
+
+### Create an existing product
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Damien",
+  "category": "Muzik",
+  "price": 10
+}
+
+### Update one product
+PUT {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "Alicia",
+  "category": "Contente",
+  "price": 10
+}
+
+### Update a non-existing product
+PUT {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "id": -1,
+  "name": "Emmeric",
+  "category": "Annoying",
+  "price": 10
+}
+
+### Delete all products
+DELETE {{baseUrl}}/products
+
+### Delete one product
+DELETE {{baseUrl}}/products/5
+
+### Delete a non-existing product
+DELETE {{baseUrl}}/products/-1
