@@ -74,6 +74,7 @@ public class ProductController {
 
         products.remove(foundProduct);
         products.add(product);
+
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
@@ -85,6 +86,7 @@ public class ProductController {
     @DeleteMapping("/products")
     public ResponseEntity<Product> deleteAll() {
         products.clear();
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -102,6 +104,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         products.remove(product);
+
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
