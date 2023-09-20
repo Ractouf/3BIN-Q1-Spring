@@ -1,0 +1,121 @@
+openapi: 3.0.3
+info:
+  title: Amazing
+  description: Amazing cours Spring
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+    description: Development server
+
+paths:
+  /products:
+
+    get:
+      summary: Reads all products
+      responses:
+        200:
+          description: Returned a list of products
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+
+    post:
+      summary: Creates a new product
+      requestBody:
+        description: Product created
+        content:
+          'application/json':
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/product'
+      responses:
+        409:
+          description: Product already exists
+        201:
+          description: Product created
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+
+    put:
+      summary: Updates one entire resource
+      requestBody:
+        description: New values of the product
+        content:
+          'application/json':
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/product'
+      responses:
+        404:
+          description: Product was not found
+        200:
+          description: Product updated
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+
+    delete:
+      summary: Delete all products
+      responses:
+        200:
+          description: All products are deleted
+
+  /products/{hash}:
+    parameters:
+      - name: id
+        in: path
+        description: Id of the Product
+        required: true
+        schema:
+          type: integer
+          example: 1
+        style: simple
+
+    get:
+      summary: Read one Product
+      responses:
+        404:
+          description: Product was not found
+        200:
+          description: Returned a Product
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+
+    delete:
+      summary: Delete one Product
+
+
+
+components:
+  schemas:
+    product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+        price:
+          type: integer
+      example:
+        id: 1
+        name: Dami1
+        price: 999

@@ -4,18 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
 public class ProductController {
-    private static final List<Product> products = new ArrayList<>();
+    private final ProductService service;
 
-    static {
-        products.add(new Product(1, "Damien", "Muzik", 10));
-        products.add(new Product(2, "Guillhermé", "LaSal", (int) (Math.random() * 10)));
-        products.add(new Product(3, "Alicia", "Dépressif", (int) (Math.random() * 10)));
-        products.add(new Product(4, "Miguel", "Chat", (int) (Math.random() * 10)));
+    public ProductController(ProductService service) {
+        this.service = service;
     }
 
     /**
@@ -25,7 +19,7 @@ public class ProductController {
      */
     @GetMapping("/products")
     public Iterable<Product> readAll() {
-        return products;
+        return service.readAll();
     }
 
     /**
@@ -36,11 +30,11 @@ public class ProductController {
      */
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> readOne(@PathVariable int id) {
-        Product product = findById(id);
-        if (product != null)
-            return new ResponseEntity<>(product, HttpStatus.OK);
+        Product product = service.readOne(id);
 
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (product == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     /**
@@ -51,12 +45,9 @@ public class ProductController {
      */
     @PostMapping("/products")
     public ResponseEntity<Product> createOne(@RequestBody Product product) {
-        if (products.contains(product))
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        if (service.createOne(product)) return new ResponseEntity<>(product, HttpStatus.CREATED);
 
-        products.add(product);
-
-        return new ResponseEntity<>(product, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
     /**
@@ -67,13 +58,7 @@ public class ProductController {
      */
     @PutMapping("/products")
     public ResponseEntity<Product> updateOne(@RequestBody Product product) {
-        Product foundProduct = findById(product.getId());
-
-        if (!products.contains(foundProduct))
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        products.remove(foundProduct);
-        products.add(product);
+        if (service.updateOne(product) == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
@@ -85,7 +70,7 @@ public class ProductController {
      */
     @DeleteMapping("/products")
     public ResponseEntity<Product> deleteAll() {
-        products.clear();
+        service.deleteAll();
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -98,27 +83,10 @@ public class ProductController {
      */
     @DeleteMapping("/products/{id}")
     public ResponseEntity<Product> deleteOne(@PathVariable int id) {
-        Product product = findById(id);
+        Product product = service.deleteOne(id);
 
-        if (product == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        products.remove(product);
+        if (product == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         return new ResponseEntity<>(product, HttpStatus.OK);
-    }
-
-    /**
-     * Finds a product associated with given id.
-     *
-     * @param id of the product to find
-     * @return the found product or null if none was found
-     */
-    private Product findById(int id) {
-        for (Product currentproduct : products)
-            if (currentproduct.getId() == id)
-                return currentproduct;
-
-        return null;
     }
 }

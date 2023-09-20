@@ -1,15 +1,16 @@
 package be.vinci.ipl.amazing;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "products")
 public class Product {
+    @Id
     private int id;
     private String name;
     private String category;
