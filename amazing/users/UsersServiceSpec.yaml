@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: Users
+  description: Amazing users
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:9002'
+    description: Development server
+
+paths:
+  /users/{hash}:
+    parameters:
+      - name: username
+        in: path
+        description: User's username
+        required: true
+        schema:
+          type: string
+          example: Ractouf
+        style: simple
+
+    get:
+      summary: Reads one User
+      responses:
+        404:
+          description: User was not found
+        200:
+          description: Returned a User
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/user'
+
+    post:
+      summary: Creates a new user
+      requestBody:
+        description: User to create
+        content:
+          'application/json':
+            'schema':
+              '$ref': '#/components/schemas/user'
+      responses:
+        409:
+          description: User already exists
+        201:
+          description: User created
+          content:
+            'application/json':
+              schema:
+                '$ref': '#/components/schemas/user'
+
+    put:
+      summary: Updates one entire User
+      requestBody:
+        description: New values of the User
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        404:
+          description: User was not found
+        200:
+          description: User was updated
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/user'
+
+    delete:
+      summary: Deletes one User
+      responses:
+        404:
+          description: User was not found
+        200:
+          description: User was deleted
+
+components:
+  schemas:
+    user:
+      type: object
+      properties:
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+      example:
+        username: Ractouf
+        firstname: François
+        lastname: Vandeputte
