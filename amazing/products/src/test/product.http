@@ -1,14 +1,14 @@
 ### Read all products
-GET {{baseUrl}}/products
+GET {{products}}/products
 
 ### Read one product
-GET {{baseUrl}}/products/1
+GET {{products}}/products/1
 
 ### Read a non-existing product
-GET {{baseUrl}}/products/-1
+GET {{products}}/products/-1
 
 ### Create one product
-POST {{baseUrl}}/products
+POST {{products}}/products
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### Create an existing product
-POST {{baseUrl}}/products
+POST {{products}}/products
 Content-Type: application/json
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
 }
 
 ### Update one product
-PUT {{baseUrl}}/products
+PUT {{products}}/products
 Content-Type: application/json
 
 {
@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 
 ### Update a non-existing product
-PUT {{baseUrl}}/products
+PUT {{products}}/products
 Content-Type: application/json
 
 {
@@ -52,10 +52,10 @@ Content-Type: application/json
 }
 
 ### Delete all products
-DELETE {{baseUrl}}/products
+DELETE {{products}}/products
 
 ### Delete one product
-DELETE {{baseUrl}}/products/5
+DELETE {{products}}/products/5
 
 ### Delete a non-existing product
-DELETE {{baseUrl}}/products/-1
+DELETE {{products}}/products/-1
