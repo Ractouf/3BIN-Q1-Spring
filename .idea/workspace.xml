@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ddcaa30-a700-4e74-bd60-c3bd57fefeb9" name="Changes" comment="" />
+    <list default="true" id="2ddcaa30-a700-4e74-bd60-c3bd57fefeb9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/products/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/products/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/users/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/users/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/users/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/users/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/users/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/users/src/main/java/be/vinci/ipl/users/UsersApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amazing/users/src/test/java/be/vinci/ipl/users/UsersApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/ProductServiceSpec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/http-client.env.json" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/http-client.env.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/main/java/be/vinci/ipl/amazing/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/src/main/java/be/vinci/ipl/products/ProductsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/main/java/be/vinci/ipl/amazing/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/src/main/java/be/vinci/ipl/products/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/main/java/be/vinci/ipl/amazing/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/src/main/java/be/vinci/ipl/products/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/main/java/be/vinci/ipl/amazing/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/src/main/java/be/vinci/ipl/products/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/main/java/be/vinci/ipl/amazing/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/src/main/java/be/vinci/ipl/products/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/users/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/test/java/be/vinci/ipl/amazing/ApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/src/test/java/be/vinci/ipl/products/ProductsApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amazing/src/test/product.http" beforeDir="false" afterPath="$PROJECT_DIR$/amazing/products/src/test/product.http" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/fvand/OneDrive/Bureau/Spring/amazing",
+    "last_opened_file_path": "C:/Users/fvand/OneDrive/Bureau/Spring",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -47,6 +79,11 @@
       <workItem from="1694702509194" duration="179000" />
       <workItem from="1694704194157" duration="602000" />
       <workItem from="1695226511723" duration="15000" />
+      <workItem from="1696871161732" duration="738000" />
+      <workItem from="1696875231531" duration="39000" />
+      <workItem from="1696875450200" duration="29000" />
+      <workItem from="1696875834360" duration="410000" />
+      <workItem from="1696877456363" duration="74000" />
     </task>
     <servers />
   </component>
