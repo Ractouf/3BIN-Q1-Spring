@@ -1,6 +1,9 @@
 package be.vinci.ipl.products;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +16,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity(name = "products")
 public class Product {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @JsonIgnore
     private int id;
     private String name;
     private String category;

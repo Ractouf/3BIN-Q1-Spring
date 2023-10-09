@@ -1,4 +1,4 @@
-INSERT INTO products(id, name, category, price) VALUES (1, 'Damien', 'Muzik', 10);
-INSERT INTO products(id, name, category, price) VALUES (2, 'Guillhermé', 'LaSal', 10);
-INSERT INTO products(id, name, category, price) VALUES (3, 'Alicia', 'Dépressif', 10);
-INSERT INTO products(id, name, category, price) VALUES (4, 'Miguel', 'Chat', 10);
+INSERT INTO products(name, category, price) VALUES ('Damien', 'Muzik', 10);
+INSERT INTO products(name, category, price) VALUES ('Guillhermé', 'LaSal', 10);
+INSERT INTO products(name, category, price) VALUES ('Alicia', 'Dépressif', 10);
+INSERT INTO products(name, category, price) VALUES ('Miguel', 'Chat', 10);
