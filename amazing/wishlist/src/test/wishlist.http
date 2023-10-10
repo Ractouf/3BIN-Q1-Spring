@@ -1,0 +1,20 @@
+### Get an user's wishlist
+GET {{wishlist}}/wishlist/user/PetWard
+
+### Get an non-exsiting user's wishlist
+GET {{wishlist}}/wishlist/user/PetWard
+
+### Put a new product to an user's wishlist
+PUT {{wishlist}}/wishlist/PetWard/2
+
+### Put a new non-existing product to an user's wishlist
+PUT {{wishlist}}/wishlist/PetWard/-1
+
+### Put a new product to an non-existing user's wishlist
+PUT {{wishlist}}/wishlist/NONEXISTING/1
+
+### Delete one wishlist
+DELETE {{wishlist}}/wishlist/PetWard/1
+
+### Delete one non-existing wishlist
+DELETE {{wishlist}}/wishlist/NONEXISTING/-1

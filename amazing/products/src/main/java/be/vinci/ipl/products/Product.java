@@ -16,7 +16,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity(name = "products")
 public class Product {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int id;
     private String name;
     private String category;

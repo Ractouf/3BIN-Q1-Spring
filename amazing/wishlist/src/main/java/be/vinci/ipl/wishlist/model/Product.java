@@ -1,4 +1,4 @@
-package be.vinci.ipl.wishlist;
+package be.vinci.ipl.wishlist.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +14,9 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class Product {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @JsonIgnore
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JsonIgnore
   private int id;
   private String name;
   private String category;
