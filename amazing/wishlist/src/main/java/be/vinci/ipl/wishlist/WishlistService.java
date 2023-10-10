@@ -5,6 +5,8 @@ import be.vinci.ipl.wishlist.repositories.ProductsProxy;
 import be.vinci.ipl.wishlist.repositories.UsersProxy;
 import be.vinci.ipl.wishlist.repositories.WishlistRepository;
 import feign.FeignException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,15 +25,15 @@ public class WishlistService {
     return repository.findByPseudo(pseudo);
   }
 
-  public Wishlist putWishlist(String pseudo, int productId) {
+  public ResponseEntity<Wishlist> putWishlist(String pseudo, int productId) {
     try {
       usersProxy.readOne(pseudo);
       productsProxy.readOne(productId);
     } catch (FeignException e) {
-      return null;
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    if (repository.existsByPseudoAndProductId(pseudo, productId)) return null;
+    if (repository.existsByPseudoAndProductId(pseudo, productId)) return new ResponseEntity<>(HttpStatus.CONFLICT);
 
     Wishlist wishlist = new Wishlist();
     wishlist.setPseudo(pseudo);
@@ -39,7 +41,7 @@ public class WishlistService {
 
     repository.save(wishlist);
 
-    return wishlist;
+    return new ResponseEntity<>(wishlist, HttpStatus.CREATED);
   }
 
   public boolean deleteOne(String pseudo, int productId) {

@@ -24,11 +24,7 @@ public class WishlistController {
 
   @PutMapping("/wishlist/{pseudo}/{productId}")
   public ResponseEntity<Wishlist> putWishlist(@PathVariable String pseudo, @PathVariable int productId) {
-    Wishlist wishlist = service.putWishlist(pseudo, productId);
-
-    if (wishlist == null) return new ResponseEntity<>(HttpStatus.CONFLICT);
-
-    return new ResponseEntity<>(wishlist, HttpStatus.OK);
+    return service.putWishlist(pseudo, productId);
   }
 
   @DeleteMapping("/wishlist/{pseudo}/{productId}")
