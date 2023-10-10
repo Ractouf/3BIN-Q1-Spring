@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Repository
-@FeignClient(name = "users")
+@FeignClient(name = "users", url = "http://localhost:9002")
 public interface UsersProxy {
   @GetMapping("/users/{pseudo}")
   User readOne(@PathVariable String pseudo);

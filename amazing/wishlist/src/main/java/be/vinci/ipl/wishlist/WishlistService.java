@@ -4,6 +4,7 @@ import be.vinci.ipl.wishlist.model.Wishlist;
 import be.vinci.ipl.wishlist.repositories.ProductsProxy;
 import be.vinci.ipl.wishlist.repositories.UsersProxy;
 import be.vinci.ipl.wishlist.repositories.WishlistRepository;
+import feign.FeignException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,9 +24,14 @@ public class WishlistService {
   }
 
   public Wishlist putWishlist(String pseudo, int productId) {
-    if (repository.existsByPseudoAndProductId(pseudo, productId)) return null;
+    try {
+      usersProxy.readOne(pseudo);
+      productsProxy.readOne(productId);
+    } catch (FeignException e) {
+      return null;
+    }
 
-    // usersProxy.readOne(pseudo);
+    if (repository.existsByPseudoAndProductId(pseudo, productId)) return null;
 
     Wishlist wishlist = new Wishlist();
     wishlist.setPseudo(pseudo);
