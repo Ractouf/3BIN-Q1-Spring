@@ -1,39 +1,35 @@
 package be.vinci.ipl.wishlist;
 
+import be.vinci.ipl.wishlist.model.Product;
 import be.vinci.ipl.wishlist.model.Wishlist;
 import be.vinci.ipl.wishlist.repositories.ProductsProxy;
-import be.vinci.ipl.wishlist.repositories.UsersProxy;
 import be.vinci.ipl.wishlist.repositories.WishlistRepository;
-import feign.FeignException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 @Service
 public class WishlistService {
   private final WishlistRepository repository;
   private final ProductsProxy productsProxy;
-  private final UsersProxy usersProxy;
 
-  public WishlistService(WishlistRepository repository, ProductsProxy productsProxy, UsersProxy usersProxy) {
+  public WishlistService(WishlistRepository repository, ProductsProxy productsProxy) {
     this.repository = repository;
     this.productsProxy = productsProxy;
-    this.usersProxy = usersProxy;
   }
 
-  public Iterable<Wishlist> readFromUser(String pseudo) {
-    return repository.findByPseudo(pseudo);
+  public Iterable<Product> readFromUser(String pseudo) {
+    Iterable<Wishlist> wishlists = repository.findByPseudo(pseudo);
+    ArrayList<Product> products = new ArrayList<>();
+
+    for (Wishlist wishlist : wishlists) products.add(productsProxy.readOne(wishlist.getProductId()));
+
+    return products;
   }
 
-  public ResponseEntity<Wishlist> putWishlist(String pseudo, int productId) {
-    try {
-      usersProxy.readOne(pseudo);
-      productsProxy.readOne(productId);
-    } catch (FeignException e) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    if (repository.existsByPseudoAndProductId(pseudo, productId)) return new ResponseEntity<>(HttpStatus.CONFLICT);
+  public Wishlist putWishlist(String pseudo, int productId) {
+    if (repository.existsByPseudoAndProductId(pseudo, productId)) return null;
 
     Wishlist wishlist = new Wishlist();
     wishlist.setPseudo(pseudo);
@@ -41,7 +37,7 @@ public class WishlistService {
 
     repository.save(wishlist);
 
-    return new ResponseEntity<>(wishlist, HttpStatus.CREATED);
+    return wishlist;
   }
 
   public boolean deleteOne(String pseudo, int productId) {

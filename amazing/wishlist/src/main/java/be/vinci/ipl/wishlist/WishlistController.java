@@ -1,5 +1,6 @@
 package be.vinci.ipl.wishlist;
 
+import be.vinci.ipl.wishlist.model.Product;
 import be.vinci.ipl.wishlist.model.Wishlist;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +19,19 @@ public class WishlistController {
   }
 
   @GetMapping("/wishlist/user/{pseudo}")
-  public Iterable<Wishlist> readFromUser(@PathVariable String pseudo) {
+  public Iterable<Product> readFromUser(@PathVariable String pseudo) {
     return service.readFromUser(pseudo);
   }
 
   @PutMapping("/wishlist/{pseudo}/{productId}")
   public ResponseEntity<Wishlist> putWishlist(@PathVariable String pseudo, @PathVariable int productId) {
-    return service.putWishlist(pseudo, productId);
+    Wishlist wishlist = service.putWishlist(pseudo, productId);
+
+    if (wishlist == null) {
+      return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+
+    return new ResponseEntity<>(wishlist, HttpStatus.CREATED);
   }
 
   @DeleteMapping("/wishlist/{pseudo}/{productId}")
