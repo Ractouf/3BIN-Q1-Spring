@@ -18,16 +18,19 @@ public class AuthenticationController {
 
     @GetMapping("/authentication")
     public ResponseEntity<String> connect(@RequestBody UnsafeCredentials unsafeCredentials) {
-        String user = service.connect(unsafeCredentials);
+        if (unsafeCredentials.invalid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        if (user == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        String token = service.connect(unsafeCredentials);
 
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        if (token == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+        return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
     @PostMapping("/authentication")
     public ResponseEntity<Void> createUser(@RequestBody UnsafeCredentials unsafeCredentials) {
+        if (unsafeCredentials.invalid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
         boolean created = service.createOne(unsafeCredentials);
 
         if (!created) return new ResponseEntity<>(HttpStatus.CONFLICT);
