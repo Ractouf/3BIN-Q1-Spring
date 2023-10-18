@@ -1,0 +1,2 @@
+### Get one product
+GET {{gateway}}/products/1

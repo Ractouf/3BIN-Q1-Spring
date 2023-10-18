@@ -4,14 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "credentials")
 public class SafeCredentials {
@@ -22,7 +20,4 @@ public class SafeCredentials {
     @JsonIgnore
     private String hashedPassword;
 
-    public SafeCredentials() {
-
-    }
 }

@@ -1,4 +1,4 @@
-package be.vinci.ipl.wishlist.model;
+package be.vinci.ipl.gateway.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +10,8 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class Product {
-  private int id;
-  private String name;
-  private String category;
-  private int price;
+    private int id;
+    private String name;
+    private String category;
+    private int price;
 }

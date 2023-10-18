@@ -1,4 +1,4 @@
-package be.vinci.ipl.wishlist.model;
+package be.vinci.ipl.gateway.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class User {
-  private String pseudo;
-  private String firstname;
-  private String lastname;
+    private String pseudo;
+    private String firstname;
+    private String lastname;
 }
