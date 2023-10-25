@@ -4,10 +4,12 @@ import be.vinci.ipl.gateway.data.AuthenticationProxy;
 import be.vinci.ipl.gateway.data.ProductsProxy;
 import be.vinci.ipl.gateway.data.UsersProxy;
 import be.vinci.ipl.gateway.data.WishlistsProxy;
+import be.vinci.ipl.gateway.exceptions.BadRequestException;
+import be.vinci.ipl.gateway.exceptions.ConflictException;
+import be.vinci.ipl.gateway.exceptions.NotFoundException;
 import be.vinci.ipl.gateway.models.Product;
 import be.vinci.ipl.gateway.models.UnsafeCredentials;
 import be.vinci.ipl.gateway.models.User;
-import feign.Feign;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,25 +33,25 @@ public class GatewayService {
         return productsProxy.readAll();
     }
 
-    public ResponseEntity<Product> readOneProduct(int id) {
-        ResponseEntity<Product> res;
+    public Product readOneProduct(int id) throws NotFoundException {
+        Product product;
 
         try {
-            res = productsProxy.readOne(id);
+            product = productsProxy.readOne(id).getBody();
         } catch (FeignException e) {
-            if (e.status() == 404) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            if (e.status() == 404) throw new NotFoundException();
             else throw e;
         }
 
-        return res;
+        return product;
     }
 
-    public ResponseEntity<Void> createOne(UnsafeCredentials unsafeCredentials, User user) {
+    public ResponseEntity<Void> createOne(UnsafeCredentials unsafeCredentials, User user) throws BadRequestException, ConflictException, NotFoundException {
         try {
             usersProxy.createOne(unsafeCredentials.getPseudo(), user);
         } catch (FeignException e) {
-            if (e.status() == 400) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            else if (e.status() == 409) return new ResponseEntity<>(HttpStatus.CONFLICT);
+            if (e.status() == 400) throw new BadRequestException();
+            else if (e.status() == 409) throw new ConflictException();
             else throw e;
         }
 
@@ -59,11 +61,11 @@ public class GatewayService {
             try {
                 usersProxy.deleteOne(unsafeCredentials.getPseudo());
             } catch (FeignException ex) {
-                if (e.status() == 404) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                if (e.status() == 404) throw new NotFoundException();
             }
 
-            if (e.status() == 400) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            else if (e.status() == 409) return new ResponseEntity<>(HttpStatus.CONFLICT);
+            if (e.status() == 400) throw new BadRequestException();
+            else if (e.status() == 409) throw new ConflictException();
             else throw e;
         }
 
